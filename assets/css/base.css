@@ -1,0 +1,31 @@
+/* base — variables, reset, fond animé, conteneur */
+:root{
+  --bg:#05030c; --bg2:#0b0718;
+  --cyan:#00f0ff; --magenta:#ff2bd6; --violet:#8b5cf6; --lime:#adff2f;
+  --txt:#e8e6f5; --dim:#8f89b3;
+  --card:rgba(255,255,255,.035); --line:rgba(255,255,255,.09);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg); color:var(--txt);
+  font-family:'Space Grotesk',system-ui,sans-serif;
+  overflow-x:hidden; line-height:1.6;
+}
+/* fond animé */
+body::before{
+  content:''; position:fixed; inset:-20%; z-index:-2;
+  background:
+    radial-gradient(40vw 40vw at 15% 20%, rgba(139,92,246,.35), transparent 60%),
+    radial-gradient(45vw 45vw at 85% 30%, rgba(0,240,255,.22), transparent 60%),
+    radial-gradient(50vw 50vw at 50% 90%, rgba(255,43,214,.25), transparent 60%);
+  filter:blur(40px); animation:drift 18s ease-in-out infinite alternate;
+}
+body::after{
+  content:''; position:fixed; inset:0; z-index:-1; pointer-events:none;
+  background:repeating-linear-gradient(to bottom,rgba(0,0,0,.28) 0 1px,transparent 1px 3px);
+  opacity:.45;
+}
+@keyframes drift{to{transform:translate3d(4%, -3%, 0) scale(1.12)}}
+
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
